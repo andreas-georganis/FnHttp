@@ -17,7 +17,7 @@ public class FnHttpRequest
     }
     
     
-    private object? _payload;
+    private readonly object? _payload;
 
     public object? Payload
     {
@@ -31,7 +31,7 @@ public class FnHttpRequest
                 Stream stream => new StreamContent(stream),
                 HttpContent httpContent => httpContent,
                 null => null,
-                _ => JsonContent.Create(@value)
+                _ => JsonContent.Create(value)
             };
             _payload = value;
         }
@@ -56,7 +56,7 @@ public class FnHttpRequest
     {
         return new HttpRequestMessage(Method, Uri)
         {
-            Headers = {  },
+            Headers = { },
             Content = HttpContent
         };
     }

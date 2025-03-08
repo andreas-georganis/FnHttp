@@ -8,7 +8,7 @@ public interface IFnHttpClient
 public class FnHttpClient : IFnHttpClient
 {
     private readonly HttpClient _httpClient;
-    //private readonly RecyclableMemoryStreamManager _rmsm = new();
+    
     public FnHttpClient(HttpClient httpClient)
     {
         _httpClient = httpClient;
@@ -26,18 +26,12 @@ public class FnHttpClient : IFnHttpClient
 
             var response = await _httpClient.SendAsync(fRequest, request.CompletionOption, lts.Token).ConfigureAwait(false);
             
-            // if (response.IsSuccessStatusCode == false)
-            //     return Fin<FnHttpResponse>.Fail(
-            //         new FnHttpRequestError($"Request failed with status code {response.StatusCode}.", (int)response.StatusCode));
-
-            //response.EnsureSuccessStatusCode();
-
             var content = request.Content switch
             {
                 Content.ByteArray => new RawContent(await response.Content.ReadAsByteArrayAsync(lts.Token).ConfigureAwait(false)),
                 Content.Stream => new RawContent(await response.Content.ReadAsStreamAsync(lts.Token).ConfigureAwait(false)),
                 Content.String => new RawContent(await response.Content.ReadAsStringAsync(lts.Token).ConfigureAwait(false)),
-                _ => throw new ArgumentOutOfRangeException(nameof(request.Content))
+                _ => throw new ArgumentOutOfRangeException(nameof(request), "Unknown content type.")
             };
             
             var headers = response.Content.Headers;

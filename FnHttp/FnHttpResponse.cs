@@ -34,7 +34,7 @@ public class FnHttpResponse : FnHttpResponseBase, IDisposable, IAsyncDisposable
 
     public void Dispose()
     {
-        //Content.Dispose();
+        Content.Dispose();
         // Content.Map(x=>
         // {
         //      x.Dispose();
@@ -45,8 +45,7 @@ public class FnHttpResponse : FnHttpResponseBase, IDisposable, IAsyncDisposable
 
     public ValueTask DisposeAsync()
     {
-        return default;
-        //return Content.DisposeAsync();
+        return Content.DisposeAsync();
         // await Content.MapAsync(async x =>
         // {
         //     await x.DisposeAsync();
