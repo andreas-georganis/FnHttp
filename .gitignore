@@ -1,0 +1,74 @@
+# JetBrains Rider-specific files
+.idea/
+.idea_modules/
+.idea/workspace.xml
+.idea/Shelf/
+.idea/dictionaries/
+.idea/httpRequests/
+.idea/sonarlint/
+.idea/usage.statistics.xml
+.idea/**/workspace.xml
+.idea/**/shelf/
+.idea/**/runConfigurations/
+.idea/projectSettingsUpdater.xml
+.idea/modules.xml
+.idea/contentModel.xml
+.idea/.name
+.idea/dataSources/
+.idea/dataSources.local.xml
+
+# Rider local files
+/shelf/
+/workspace.xml
+/modules.xml
+/projectSettingsUpdater.xml
+/httpRequests/
+/dataSources/
+/dataSources.local.xml
+
+# Visual Studio-specific files (Only needed if using VS)
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vscode/
+
+# .NET build artifacts
+bin/
+obj/
+*.log
+*.vspscc
+*.vssscc
+
+# NuGet dependencies
+*.nupkg
+packages/
+.nuget/
+
+# Visual Studio & Rider caches
+_ReSharper.Caches/
+
+# Debug & profiler files
+*.pdb
+*.ilk
+*.exp
+*.dotCover
+
+# Rider run configurations
+.idea/runConfigurations/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Local environment-specific
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# MacOS junk files
+.DS_Store

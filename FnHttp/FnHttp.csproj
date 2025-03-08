@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>12</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="LanguageExt.Core" Version="4.4.9" />
+      <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="8.0.0-preview.7.23375.9" />
+      <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.3.2" />
+      <PackageReference Include="OneOf" Version="3.0.271" />
+      <PackageReference Include="OneOf.SourceGenerator" Version="3.0.271" />
+      <PackageReference Include="PooledMemoryStream" Version="1.0.5" />
+      <PackageReference Include="PooledStream" Version="0.3.0" />
+      <PackageReference Include="System.IO.Pipelines" Version="8.0.0-preview.7.23375.6" />
+    </ItemGroup>
+
+</Project>
