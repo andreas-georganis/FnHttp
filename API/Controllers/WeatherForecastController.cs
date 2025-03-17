@@ -30,4 +30,10 @@ public class WeatherForecastController : ControllerBase
 
         return Ok(a);
     }
+    
+    [HttpPost(Name = "PostWeatherForecast")]
+    public ActionResult Post([FromBody] WeatherForecast forecast)
+    {
+        return Ok(forecast);
+    }
 }

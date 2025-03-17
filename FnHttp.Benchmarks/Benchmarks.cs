@@ -19,7 +19,7 @@ public class Benchmarks
     {
         _uri = new Uri("http://localhost:5043/WeatherForecast");
         _httpClient = new HttpClient();
-        _fnHttpClient = new FnHttpClient(_httpClient);
+        _fnHttpClient = new FnHttpClient(_httpClient, null);
     }
 
     [Benchmark]
@@ -41,7 +41,7 @@ public class Benchmarks
     [Benchmark]
     public async Task GetWeatherForecastUsingFnHttpClient()
     {
-        await _fnHttpClient.GetAsync<List<WeatherForecast>>( _uri);
+        await _fnHttpClient.Get<List<WeatherForecast>>( _uri);
     }
 }
 

@@ -24,12 +24,12 @@ public class ProblemDetailsDelegatingHandler : DelegatingHandler
 
 public class ProblemDetails
 {
-    public string? Type { get; set; }
-    public string? Title { get; set; }
-    public int? Status { get; set; }
-    public string? Detail { get; set; }
-    public string? Instance { get; set; }
-    public Dictionary<string, object>? Extensions { get; set; }
+    public string? Type { get; init; }
+    public string? Title { get; init; }
+    public int? Status { get; init; }
+    public string? Detail { get; init; }
+    public string? Instance { get; init; }
+    public Dictionary<string, object>? Extensions { get; init; }
 }
 
 public class ProblemDetailsException : Exception

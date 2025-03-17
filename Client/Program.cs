@@ -8,11 +8,11 @@ Console.WriteLine("Hello, World!");
 
 var httpClient = new HttpClient();
 
-var fnClient = new FnHttpClient(httpClient);
+var fnClient = new FnHttpClient(httpClient, null);
 
 var uri = new Uri("http://localhost:5043/WeatherForecast");
 
-var response1 = await fnClient.GetAsync<List<WeatherForecast>>(uri);
+var response1 = await fnClient.Get<List<WeatherForecast>>(uri);
 
 //var a = response1.Match(list => { }, f1=> { }, f2=> { }, f3=> { });
 var b = response1.IsT0? response1.AsT0 : null;

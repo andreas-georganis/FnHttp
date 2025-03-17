@@ -8,7 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="LanguageExt.Core" Version="4.4.9" />
+      <PackageReference Include="LanguageExt.Core" Version="5.0.0-beta-49" />
+      <PackageReference Include="LanguageExt.Sys" Version="5.0.0-beta-49" />
       <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="8.0.0-preview.7.23375.9" />
       <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.3.2" />
       <PackageReference Include="OneOf" Version="3.0.271" />

@@ -1,6 +1,32 @@
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace FnHttp;
+
+public enum ContentAs
+{
+    String,
+    ByteArray,
+    Stream,
+    Empty
+}
+
+public class FnHttpRequestHeaders: HttpHeaders
+{
+    public FnHttpRequestHeaders()
+    {
+        
+    }
+    
+    public FnHttpRequestHeaders(HttpRequestHeaders headers)
+    {
+        foreach (var header in headers)
+        {
+            Add(header.Key, header.Value);
+        }
+    }
+}
 
 public class FnHttpRequest
 {
@@ -31,7 +57,7 @@ public class FnHttpRequest
                 Stream stream => new StreamContent(stream),
                 HttpContent httpContent => httpContent,
                 null => null,
-                _ => JsonContent.Create(value)
+                _ => JsonContent.Create(value, typeof(object), null, JsonSerializerOptions)
             };
             _payload = value;
         }
@@ -48,24 +74,30 @@ public class FnHttpRequest
     /// <summary>
     /// How to read the response content
     /// </summary>
-    public Content Content { get; init; } = Content.Stream;
+    public ContentAs Content { get; init; } = ContentAs.Stream;
 
     public int Timeout { get; init; } = System.Threading.Timeout.Infinite;
+    
+    public JsonSerializerOptions? JsonSerializerOptions { get; init; }
+    
+    public FnHttpRequestHeaders Headers { get; init; } = new();
 
     public HttpRequestMessage ToHttpRequestMessage()
     {
-        return new HttpRequestMessage(Method, Uri)
+        var message = new HttpRequestMessage(Method, Uri)
         {
-            Headers = { },
             Content = HttpContent
         };
+        ApplyHeaders(message, Headers);
+        return message;
+    }
+    
+    private static void ApplyHeaders(HttpRequestMessage request, FnHttpRequestHeaders headers)
+    {
+        foreach (var header in headers)
+        {
+            request.Headers.TryAddWithoutValidation(header.Key, header.Value);
+        }
     }
 }
 
-public enum Content
-{
-    //Json,
-    String,
-    ByteArray,
-    Stream
-}

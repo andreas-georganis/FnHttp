@@ -17,17 +17,15 @@ public abstract class FnHttpResponseBase
     public bool IsSuccessStatusCode { get; init; }
 }
 
-
-
 public class FnHttpResponse : FnHttpResponseBase, IDisposable, IAsyncDisposable
 {
     // internal Aff<RawContent> Content { get; set; }
-    public required RawContent Content { get; init; }
+    public required FnHttpContent Content { get; init; }
     
-    public OneOf<FnHttpResponse, FnHttpRequestError> EnsureSuccessStatusCode()
+    public OneOf<FnHttpResponse, FnHttpResponseError> EnsureSuccessStatusCode()
     {
         if (IsSuccessStatusCode == false)
-            return new FnHttpRequestError($"Request failed with status code {HttpStatusCode}.", (int)HttpStatusCode);
+            return new FnHttpResponseError($"Request failed with status code {HttpStatusCode}.", (int)HttpStatusCode);
 
         return this;
     }
@@ -56,5 +54,5 @@ public class FnHttpResponse : FnHttpResponseBase, IDisposable, IAsyncDisposable
 
 public class FnHttpResponse<T> : FnHttpResponseBase
 {
-    public OneOf<T?, FnHttpRequestError, DeserializationError> Data { get; init; }
+    public OneOf<T?, DeserializationError> Data { get; init; }
 }

@@ -1,8 +1,8 @@
 namespace FnHttp;
 
-public record DeserializationError: Exceptional
+public record DeserializationError: FnHttpResponseError
 {
-    public DeserializationError(Exception ex) : base((Exceptional)Exceptional.New(ex))
+    public DeserializationError(Exception ex) : base(ex)
     {
     }
-};
+}
